@@ -33,20 +33,21 @@ export function isValidToken(accessToken: string) {
     return false;
   }
 
-  try {
-    const decoded = jwtDecode(accessToken);
+  return true
+  // try {
+  //   const decoded = jwtDecode(accessToken);
 
-    if (!decoded || !('exp' in decoded)) {
-      return false;
-    }
+  //   if (!decoded || !('exp' in decoded)) {
+  //     return false;
+  //   }
 
-    const currentTime = Date.now() / 1000;
+  //   const currentTime = Date.now() / 1000;
 
-    return decoded.exp > currentTime;
-  } catch (error) {
-    console.error('Error during token validation:', error);
-    return false;
-  }
+  //   return decoded.exp > currentTime;
+  // } catch (error) {
+  //   console.error('Error during token validation:', error);
+  //   return false;
+  // }
 }
 
 // ----------------------------------------------------------------------
@@ -74,15 +75,15 @@ export async function setSession(accessToken: string | null) {
     if (accessToken) {
       sessionStorage.setItem(STORAGE_KEY, accessToken);
 
-      axios.defaults.headers.common.Authorization = `Bearer ${accessToken}`;
+      // axios.defaults.headers.common.Authorization = `Bearer ${accessToken}`;
 
-      const decodedToken = jwtDecode(accessToken); // ~3 days by minimals server
+      // const decodedToken = jwtDecode(accessToken); // ~3 days by minimals server
 
-      if (decodedToken && 'exp' in decodedToken) {
-        tokenExpired(decodedToken.exp);
-      } else {
-        throw new Error('Invalid access token!');
-      }
+      // if (decodedToken && 'exp' in decodedToken) {
+      //   tokenExpired(decodedToken.exp);
+      // } else {
+      //   throw new Error('Invalid access token!');
+      // }
     } else {
       sessionStorage.removeItem(STORAGE_KEY);
       delete axios.defaults.headers.common.Authorization;

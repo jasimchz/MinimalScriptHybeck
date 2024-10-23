@@ -115,11 +115,11 @@ export function PostListView() {
                 variant={((tab === 'all' || tab === filters.state.publish) && 'filled') || 'soft'}
                 color={(tab === 'published' && 'info') || 'default'}
               >
-                {tab === 'all' && posts.length}
+                {tab === 'all' && posts?.length}
 
-                {tab === 'published' && posts.filter((post) => post.publish === 'published').length}
+                {tab === 'published' && posts?.filter((post) => post.publish === 'published')?.length}
 
-                {tab === 'draft' && posts.filter((post) => post.publish === 'draft').length}
+                {tab === 'draft' && posts?.filter((post) => post.publish === 'draft')?.length}
               </Label>
             }
             sx={{ textTransform: 'capitalize' }}

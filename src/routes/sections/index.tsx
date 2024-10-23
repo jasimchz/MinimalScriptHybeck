@@ -1,3 +1,4 @@
+import { CONFIG } from 'src/config-global';
 import { lazy, Suspense } from 'react';
 import { Navigate, useRoutes } from 'react-router-dom';
 
@@ -26,7 +27,8 @@ export function Router() {
       element: (
         <Suspense fallback={<SplashScreen />}>
           <MainLayout>
-            <HomePage />
+            <Navigate to={CONFIG.auth.redirectPath} replace />
+            {/* <HomePage /> */}
           </MainLayout>
         </Suspense>
       ),
